@@ -1,0 +1,91 @@
+<?php
+
+
+
+/**
+ * Implementation of hook_user().
+ */
+ 
+ 
+ function moodle_drupal_user($op, &$edit, &$account, $category = NULL) {
+	//$ses = session_name();
+	//$ses_cookie = $_COOKIE[$ses];
+	//print($user);
+	//print $a;exit;
+	switch ($op) {
+		case 'login':
+		
+		global $user;
+		watchdog('sid',$user->sid);
+		watchdog('account',serialize($account));
+		//setcookie("site_username",$account->name, time()+3600*24, '/', '.localhost.com');
+		setcookie("site_username",$user->name, time()+3600*24,'/','.devstu_dev.bliss-dev.com');
+		setcookie("site_pass",$user->pass, time()+3600*24, '/', '.devstu_dev.bliss-dev.com');
+		break;	
+	
+		case 'logout':
+		sso_logout($account);
+		break;
+		case 'default':
+			break;
+	}
+	//return $temp;
+}
+
+
+/**
+ * unSets cookies after logout
+ */
+ function sso_logout($account)
+ {
+		setcookie("site_username",'',0,'/','.devstu_dev.bliss-dev.com');
+		setcookie("site_pass",'', 0, '/', '.devstu_dev.bliss-dev.com');
+ }
+ 
+ 
+/*
+function sso_user_login(&$account) {
+
+	//include("C:\wamp\www\moodle\sso.php");
+	
+	watchdog("one","abcd");
+	//global $user;
+	watchdog("two",$account->name);
+	
+	//$s = "stage1";
+	
+	
+	//$moodlesso_user = moodlesso_get_record($user);
+	watchdog('asd', $s);
+	drupal_set_message("Hello");
+	drupal_set_message($account->name." ".$account->pass);
+	watchdog("username_drupal",$account->name);
+	//drupal_set_message($domain);
+	//drupal_set_message($cookie);
+	//drupal_set_message($moodlesso_user->moodle_username);
+	//drupal_moodle_sso($user->name,'prateek');
+	//setcookie('drupal_username',$user->name);
+	//require_once('C:\wamp\www\moodle\sso.php');
+	// Establish a curl connection 
+	
+	
+	$referer = "http://moodle.localhost.com/sso.php?drupal_username=mukesh";
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $referer);
+	
+	curl_exec($ch);
+	//watchdog("test",serialize($ch));
+	curl_close($ch);
+	/*
+	$referer = "http://moodle.localhost.com/sso.php?drupal_username=".$account->name;
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_REFERER, $referer);
+	
+	curl_exec($ch);
+	watchdog("test",serialize($ch));
+	curl_close($ch);*/
+	//$request ='http://moodle.localhost.com/sso.php?moodle_username='.$user->name;
+	//watchdog("url",$request);
+	//$session = curl_init($request);
+/*	watchdog("session",$session);
+}*/
