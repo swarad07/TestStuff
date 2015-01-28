@@ -1,1 +1,2 @@
 bla bla bla
+new feature 2
