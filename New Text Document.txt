@@ -1,1 +1,2 @@
 bla bla bla
+Adding a new feature 1 with nice code
