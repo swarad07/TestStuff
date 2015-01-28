@@ -1,2 +1,3 @@
 bla bla bla
 commint on feature 3
+adding new features
