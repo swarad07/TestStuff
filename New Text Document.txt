@@ -1,3 +1,8 @@
-bla bla bla
-new feature 2
-Adding a new feature 1 with nice code
+  bla bla bla
+
+  new feature 2
+  Adding a new feature 1 with nice code
+
+  commint on feature 3
+  adding new features
+
